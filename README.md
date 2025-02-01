@@ -23,8 +23,8 @@ Before you begin, ensure you have the following installed on your system:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/fusion-flavors.git
-cd fusion-flavors
+git clone https://github.com/pranjal0715/pandey-masala.git
+cd pandey-masala
 ```
 
 2. Install dependencies:
