@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CartPage from "./Cart";
 import {
   Menu as MenuIcon,
   UtensilsCrossed,
@@ -714,41 +715,60 @@ const menuItems =  {
   ],
 };
 
+
+
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("chinese");
   const [cart, setCart] = useState({ chinese: {}, indian: {}, italian: {}, american: {} });
+  const [cartCount, setCartCount] = useState(0);
 
   const handleAdd = (id) => {
-    setCart((prev) => ({
-      ...prev,
-      [selectedCategory]: {
+    setCart((prev) => {
+      const updatedCategory = {
         ...prev[selectedCategory],
         [id]: (prev[selectedCategory][id] || 0) + 1,
-      },
-    }));
+      };
+      return { ...prev, [selectedCategory]: updatedCategory };
+    });
   };
 
   const handleReduce = (id) => {
-    setCart((prev) => ({
-      ...prev,
-      [selectedCategory]: {
+    setCart((prev) => {
+      const updatedCategory = {
         ...prev[selectedCategory],
         [id]: Math.max((prev[selectedCategory][id] || 0) - 1, 0),
-      },
-    }));
+      };
+      return { ...prev, [selectedCategory]: updatedCategory };
+    });
+  };
+
+  const handleAddToBag = () => {
+    let totalItems = 0;
+    Object.values(cart).forEach(category => {
+      Object.values(category).forEach(count => {
+        totalItems += count;
+      });
+    });
+    setCartCount(totalItems);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100">
       <header className="bg-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Coffee className="w-8 h-8 text-orange-600" />
-              <h1 className="ml-2 text-2xl font-bold text-gray-900">
-                Pandey Masala
-              </h1>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+          <div className="flex items-center">
+            <Coffee className="w-8 h-8 text-orange-600" />
+            <h1 className="ml-2 text-2xl font-bold text-gray-900">
+              Pandey Masala
+            </h1>
+          </div>
+          <div className="relative">
+            <Cart className="w-8 h-8 text-orange-600" />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                {cartCount}
+              </span>
+            )}
           </div>
         </div>
       </header>
@@ -798,7 +818,10 @@ function Menu() {
                   </button>
                 </div>
                 {cart[selectedCategory][item.id] > 0 && (
-                  <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
+                  <button 
+                    onClick={handleAddToBag} 
+                    className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600"
+                  >
                     Add to the Bag
                   </button>
                 )}
