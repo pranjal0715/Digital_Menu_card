@@ -6,10 +6,12 @@ import {
   Pizza,
   BookDown as Bowl,
   Sandwich,
+  ShoppingCart as Cart,
+  Plus,
+  Minus
 } from "lucide-react";
 
-// Menu data
-const menuItems = {
+const menuItems =  {
   chinese: [
     {
       id: 1,
@@ -714,20 +716,26 @@ const menuItems = {
 
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("chinese");
+  const [cart, setCart] = useState({ chinese: {}, indian: {}, italian: {}, american: {} });
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "chinese":
-        return <Bowl className="w-6 h-6" />;
-      case "indian":
-        return <UtensilsCrossed className="w-6 h-6" />;
-      case "italian":
-        return <Pizza className="w-6 h-6" />;
-      case "american":
-        return <Sandwich className="w-6 h-6" />;
-      default:
-        return <MenuIcon className="w-6 h-6" />;
-    }
+  const handleAdd = (id) => {
+    setCart((prev) => ({
+      ...prev,
+      [selectedCategory]: {
+        ...prev[selectedCategory],
+        [id]: (prev[selectedCategory][id] || 0) + 1,
+      },
+    }));
+  };
+
+  const handleReduce = (id) => {
+    setCart((prev) => ({
+      ...prev,
+      [selectedCategory]: {
+        ...prev[selectedCategory],
+        [id]: Math.max((prev[selectedCategory][id] || 0) - 1, 0),
+      },
+    }));
   };
 
   return (
@@ -746,7 +754,6 @@ function Menu() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Category Navigation */}
         <div className="flex overflow-x-auto pb-4 gap-4">
           {Object.keys(menuItems).map((category) => (
             <button
@@ -758,29 +765,43 @@ function Menu() {
                   : "bg-white text-gray-700 hover:bg-orange-100"
               } transition-colors duration-200 shadow-md whitespace-nowrap`}
             >
-              {getCategoryIcon(category)}
-              <span className="ml-2 capitalize">{category}</span>
+              {category}
             </button>
           ))}
         </div>
 
-        {/* Menu Items */}
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {menuItems[selectedCategory as keyof typeof menuItems].map((item) => (
+          {menuItems[selectedCategory]?.map((item) => (
             <div
               key={item.id}
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
             >
               <div className="p-6">
                 <div className="flex justify-between items-start">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {item.name}
-                  </h3>
-                  <span className="text-orange-600 font-bold">
-                    ${item.price}
-                  </span>
+                  <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
+                  <span className="text-orange-600 font-bold">${item.price}</span>
                 </div>
                 <p className="mt-2 text-gray-600">{item.description}</p>
+                <div className="mt-4 flex items-center gap-4">
+                  <button
+                    onClick={() => handleReduce(item.id)}
+                    className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <span className="text-lg font-bold">{cart[selectedCategory][item.id] || 0}</span>
+                  <button
+                    onClick={() => handleAdd(item.id)}
+                    className="p-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600"
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
+                {cart[selectedCategory][item.id] > 0 && (
+                  <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
+                    Add to the Bag
+                  </button>
+                )}
               </div>
             </div>
           ))}
