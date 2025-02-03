@@ -713,13 +713,208 @@ const menuItems =  {
       description: "Graham crackers with melted chocolate and marshmallows",
     },
   ],
-};
+    main_course: [
+      {
+        "id": 1,
+        "name": "Butter Chicken",
+        "price": 16.99,
+        "description": "Creamy tomato-based curry with tender chicken"
+      },
+      {
+        "id": 2,
+        "name": "Paneer Tikka Masala",
+        "price": 14.99,
+        "description": "Paneer cubes cooked in a rich tomato and cashew gravy"
+      },
+      {
+        "id": 3,
+        "name": "Dal Makhani",
+        "price": 12.99,
+        "description": "Slow-cooked black lentils with butter and cream"
+      },
+      {
+        "id": 4,
+        "name": "Biryani",
+        "price": 15.99,
+        "description": "Aromatic basmati rice cooked with spices and choice of meat/vegetables"
+      },
+      {
+        "id": 5,
+        "name": "Rogan Josh",
+        "price": 18.99,
+        "description": "Kashmiri-style lamb curry cooked with yogurt and aromatic spices"
+      },
+      {
+        "id": 6,
+        "name": "Chole Bhature",
+        "price": 11.99,
+        "description": "Spicy chickpea curry served with deep-fried bread"
+      },
+      {
+        "id": 7,
+        "name": "Malai Kofta",
+        "price": 14.99,
+        "description": "Paneer and potato dumplings in rich tomato gravy"
+      },
+      {
+        "id": 8,
+        "name": "Tandoori Chicken",
+        "price": 17.99,
+        "description": "Marinated chicken roasted in a clay oven"
+      },
+      {
+        "id": 9,
+        "name": "Fish Curry",
+        "price": 19.99,
+        "description": "Fish cooked in a spicy coconut-based curry"
+      },
+      {
+        "id": 10,
+        "name": "Stuffed Bell Peppers",
+        "price": 13.99,
+        "description": "Bell peppers filled with a spiced vegetable and rice mixture"
+      }
+    ],
+    
+    beverages: [
+      {
+        "id": 1,
+        "name": "Mango Lassi",
+        "price": 5.99,
+        "description": "Refreshing yogurt-based mango drink"
+      },
+      {
+        "id": 2,
+        "name": "Iced Coffee",
+        "price": 4.99,
+        "description": "Cold brew coffee with milk and sugar"
+      },
+      {
+        "id": 3,
+        "name": "Lemonade",
+        "price": 3.99,
+        "description": "Fresh lemon juice with sugar and mint"
+      },
+      {
+        "id": 4,
+        "name": "Masala Chai",
+        "price": 2.99,
+        "description": "Indian spiced tea with milk and aromatic spices"
+      },
+      {
+        "id": 5,
+        "name": "Cold Coffee",
+        "price": 6.99,
+        "description": "Blended iced coffee with chocolate and cream"
+      }
+    ],
+  
+    desserts: [
+      {
+        "id": 1,
+        "name": "Chocolate Lava Cake",
+        "price": 7.99,
+        "description": "Warm chocolate cake with a molten center"
+      },
+      {
+        "id": 2,
+        "name": "Cheesecake",
+        "price": 8.99,
+        "description": "Creamy dessert with a graham cracker crust"
+      },
+      {
+        "id": 3,
+        "name": "Brownies",
+        "price": 6.99,
+        "description": "Dense and fudgy chocolate dessert bars"
+      },
+      {
+        "id": 4,
+        "name": "Rasmalai",
+        "price": 5.99,
+        "description": "Soft paneer dumplings soaked in saffron-flavored milk"
+      },
+      {
+        "id": 5,
+        "name": "Ice Cream Sundae",
+        "price": 7.49,
+        "description": "Vanilla ice cream topped with chocolate sauce and nuts"
+      }
+    ],
+  
+    starters: [
+      {
+        "id": 1,
+        "name": "Spring Rolls",
+        "price": 9.99,
+        "description": "Crispy rolls stuffed with vegetables or meat"
+      },
+      {
+        "id": 2,
+        "name": "Mozzarella Sticks",
+        "price": 8.99,
+        "description": "Crispy fried cheese sticks served with marinara sauce"
+      },
+      {
+        "id": 3,
+        "name": "Garlic Bread",
+        "price": 5.99,
+        "description": "Toasted bread with garlic butter and herbs"
+      },
+      {
+        "id": 4,
+        "name": "Nachos Supreme",
+        "price": 11.99,
+        "description": "Crispy nachos topped with cheese, beans, and jalapenos"
+      },
+      {
+        "id": 5,
+        "name": "Paneer Tikka",
+        "price": 12.99,
+        "description": "Grilled spiced paneer cubes with mint chutney"
+      }
+    ],
+  
+    quick_bites: [
+      {
+        "id": 1,
+        "name": "Veg Burger",
+        "price": 9.99,
+        "description": "Classic veggie patty with lettuce and tomato"
+      },
+      {
+        "id": 2,
+        "name": "French Fries",
+        "price": 4.99,
+        "description": "Golden crispy fries with ketchup"
+      },
+      {
+        "id": 3,
+        "name": "Chicken Wrap",
+        "price": 12.99,
+        "description": "Grilled chicken wrapped in a soft tortilla with veggies"
+      },
+      {
+        "id": 4,
+        "name": "Cheese Sandwich",
+        "price": 6.99,
+        "description": "Grilled cheese sandwich with buttered bread"
+      },
+      {
+        "id": 5,
+        "name": "Veg Momos",
+        "price": 7.99,
+        "description": "Steamed dumplings filled with vegetables and served with spicy sauce"
+      }
+    ]
+  }
+  
 
 
 
 function Menu() {
   const [selectedCategory, setSelectedCategory] = useState("chinese");
-  const [cart, setCart] = useState({ chinese: {}, indian: {}, italian: {}, american: {} });
+  const [cart, setCart] = useState({ chinese: {}, indian: {}, italian: {}, american: {}, main_course: {}, beverages: {}, desserts: {}, starters: {}, quick_bites: {} });
   const [cartCount, setCartCount] = useState(0);
 
   const handleAdd = (id) => {
