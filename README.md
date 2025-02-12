@@ -1,6 +1,6 @@
 # Fusion Flavors - QR Menu Card
 
-A modern, responsive QR menu card built with React, TypeScript, and Tailwind CSS. This application allows restaurants to display their menu items in a beautiful, easy-to-navigate interface that works seamlessly across all devices.
+A modern, responsive QR menu card built with React, TypeScript, and Tailwind CSS. This application allows restaurants to display their menu items in a beautiful, easy-to-navigate interface that works seamlessly across all devices. 
 
 ![Fusion Flavors Menu](https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=80)  
 
