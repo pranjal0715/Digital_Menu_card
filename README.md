@@ -21,7 +21,7 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository :
 ```bash
 git clone https://github.com/pranjal0715/pandey-masala.git
 cd pandey-masala
